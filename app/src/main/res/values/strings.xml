@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NightSafe</string>
+
+    <string name="confirm">NightSafe has detected a possible aggressive action. If everything is
+                        alright please press the button below within the next two minutes to
+                        confirm that you will not be needing assistance.</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_aggression_alert">AggressionAlert</string>
+</resources>

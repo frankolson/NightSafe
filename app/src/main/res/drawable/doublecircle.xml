@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/circle"
+        android:right="0dp"
+        android:left="60dp"
+        android:id="@+id/leftCircle"/>
+    <item android:drawable="@drawable/circle"
+        android:right="60dp"
+        android:left="0dp"
+        android:id="@+id/rightCircle"/>
+</layer-list>
