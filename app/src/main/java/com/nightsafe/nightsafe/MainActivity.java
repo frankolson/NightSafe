@@ -21,6 +21,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -48,6 +49,9 @@ public class MainActivity extends Activity {
     CountDownTimer TLTimer;
     CountDownTimer BRTimer;
     CountDownTimer BLTimer;
+    CountDownTimer PIRLTimer;
+    CountDownTimer PIRCTimer;
+    CountDownTimer PIRRTimer;
 
     // UI elements
     ScrollView scrollView;
@@ -58,9 +62,15 @@ public class MainActivity extends Activity {
     View TLview;
     View BRview;
     View BLview;
+    View PIRLview;
+    View PIRCview;
+    View PIRRview;
 
     GradientDrawable TR;
     GradientDrawable TL;
+    GradientDrawable PIRL;
+    GradientDrawable PIRC;
+    GradientDrawable PIRR;
     LayerDrawable BR;
     LayerDrawable BL;
     GradientDrawable BRcircleLeft;
@@ -141,28 +151,110 @@ public class MainActivity extends Activity {
             if(tmp.equals("5")){
                 Intent i = new Intent(MainActivity.this, AggressionAlert.class);
                 startActivity(i);
-            }else if(tmp.equals("1")){
-                Toast.makeText(getApplicationContext(), "You are being approached from behind", Toast.LENGTH_LONG).show();
-                writeLine("You are being approached from behind");
-                TL.setColor(Color.RED);
-                TLTimer.start();
+            }else if(tmp.equals("6")){
+                // Alert PIR
+                writeLine("You are being approached from behind: PIR Right");
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        PIRL.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
+                PIRLTimer.start();
+            }else if(tmp.equals("7")){
+                // Alert PIR
+                writeLine("You are being approached from behind: PIR Center");
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        PIRC.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
+                PIRCTimer.start();
+            }else if(tmp.equals("8")){
+                // Alert PIR
+                writeLine("You are being approached from behind: PIR Left");
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        PIRR.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
+                PIRRTimer.start();
             }else if(tmp.equals("2")){
-                Toast.makeText(getApplicationContext(), "You are being approached from behind", Toast.LENGTH_LONG).show();
                 writeLine("You are being approached from behind");
-                TR.setColor(Color.RED);
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        TL.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
+                TLTimer.start();
+            }else if(tmp.equals("1")){
+                writeLine("You are being approached from behind");
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        TR.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
                 TRTimer.start();
-            }else if(tmp.equals("3")){
-                Toast.makeText(getApplicationContext(), "You are being approached from behind", Toast.LENGTH_LONG).show();
-                writeLine("You are being approached from behind");
-                BLcircleRight.setColor(Color.RED);
-                BLcircleLeft.setColor(Color.RED);
-                BLTimer.start();
             }else if(tmp.equals("4")){
-                Toast.makeText(getApplicationContext(), "You are being approached from behind", Toast.LENGTH_LONG).show();
                 writeLine("You are being approached from behind");
-                BRcircleRight.setColor(Color.RED);
-                BRcircleLeft.setColor(Color.RED);
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        BLcircleRight.setColor(Color.RED);
+                    }
+                });
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        BLcircleLeft.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
+                BLTimer.start();
+            }else if(tmp.equals("3")){
+                writeLine("You are being approached from behind");
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        BRcircleRight.setColor(Color.RED);
+                    }
+                });
+
+                // Change color of dot
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        BRcircleLeft.setColor(Color.RED);
+                    }
+                });
+
+                // Set timer and when done set color bad
                 BRTimer.start();
+            }else if(!tmp.equals("6")){
+                writeLine("Did not work...");
+                writeLine("Received: _" + tmp + "_");
             }
         }
     };
@@ -197,9 +289,15 @@ public class MainActivity extends Activity {
         TLview = findViewById(R.id.sensorTopLeft);
         BRview = findViewById(R.id.sensorBottomRight);
         BLview = findViewById(R.id.sensorBottomLeft);
+        PIRLview = findViewById(R.id.sensorPIRLeft);
+        PIRCview = findViewById(R.id.sensorPIRCenter);
+        PIRRview = findViewById(R.id.sensorPIRRight);
 
         TR = (GradientDrawable)TRview.getBackground();
         TL = (GradientDrawable)TLview.getBackground();
+        PIRL = (GradientDrawable)PIRLview.getBackground();
+        PIRC = (GradientDrawable)PIRCview.getBackground();
+        PIRR = (GradientDrawable)PIRRview.getBackground();
 
         BR = (LayerDrawable)BRview.getBackground();
         BRcircleLeft = (GradientDrawable) BR.findDrawableByLayerId(R.id.leftCircle);
@@ -360,7 +458,6 @@ public class MainActivity extends Activity {
             public void onFinish() {
                 // set color back to green
                 TL.setColor(Color.GREEN);
-                finish();
             }
         };
 
@@ -375,7 +472,6 @@ public class MainActivity extends Activity {
             public void onFinish() {
                 // set color back to green
                 TR.setColor(Color.GREEN);
-                finish();
             }
         };
 
@@ -391,7 +487,6 @@ public class MainActivity extends Activity {
                 // set color back to green
                 BLcircleLeft.setColor(Color.GREEN);
                 BLcircleRight.setColor(Color.GREEN);
-                finish();
             }
         };
 
@@ -407,7 +502,48 @@ public class MainActivity extends Activity {
                 // set color back to green
                 BRcircleLeft.setColor(Color.GREEN);
                 BRcircleRight.setColor(Color.GREEN);
-                finish();
+            }
+        };
+
+        // Left PIR three second timer
+        PIRLTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // do NOTHING!!!!!
+            }
+
+            @Override
+            public void onFinish() {
+                // set color back to green
+                PIRL.setColor(Color.GREEN);
+            }
+        };
+
+        // center PIR three second timer
+        PIRCTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // do NOTHING!!!!!
+            }
+
+            @Override
+            public void onFinish() {
+                // set color back to green
+                PIRC.setColor(Color.GREEN);
+            }
+        };
+
+        // Left PIR three second timer
+        PIRRTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // do NOTHING!!!!!
+            }
+
+            @Override
+            public void onFinish() {
+                // set color back to green
+                PIRR.setColor(Color.GREEN);
             }
         };
     }
