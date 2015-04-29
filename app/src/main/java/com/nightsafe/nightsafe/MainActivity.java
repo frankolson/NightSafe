@@ -158,7 +158,7 @@ public class MainActivity extends Activity {
                 // Change color of dot
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        PIRL.setColor(Color.RED);
+                        PIRR.setColor(Color.RED);
                     }
                 });
 
@@ -184,7 +184,7 @@ public class MainActivity extends Activity {
                 // Change color of dot
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        PIRR.setColor(Color.RED);
+                        PIRL.setColor(Color.RED);
                     }
                 });
 
@@ -317,7 +317,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // turn NightSafe device on
-                sendData(v, "on");
+                sendData(v, "1");
             }
         });
 
@@ -329,7 +329,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
 
                 // turn NightSafe device off
-                sendData(v, "off");
+                sendData(v, "0");
 
             }
         });
