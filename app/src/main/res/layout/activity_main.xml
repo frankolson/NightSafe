@@ -14,7 +14,11 @@
         android:text="Turn Unit On"
         android:id="@+id/buttonON"
         android:layout_alignParentTop="true"
+<<<<<<< HEAD
         android:layout_alignStart="@+id/sensorBottomLeft" />
+=======
+        android:layout_centerHorizontal="true" />
+>>>>>>> 99a306985327dd5260be772e0e2f170e65ee8c35
 
     <Button
         android:layout_width="wrap_content"
@@ -22,6 +26,7 @@
         android:text="Turn Unit Off"
         android:id="@+id/buttonOFF"
         android:layout_below="@+id/buttonON"
+<<<<<<< HEAD
         android:layout_alignStart="@+id/buttonON" />
     <Button
         android:layout_width="wrap_content"
@@ -31,6 +36,9 @@
         android:background="@color/RED"
         android:id="@+id/buttonAlert"
         android:layout_alignStart="@+id/sensorBottomRight" />
+=======
+        android:layout_centerHorizontal="true" />
+>>>>>>> 99a306985327dd5260be772e0e2f170e65ee8c35
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,14 +69,23 @@
         android:background="@drawable/circle"
         android:id="@+id/sensorTopLeft"
         android:layout_centerVertical="true"
+<<<<<<< HEAD
         android:layout_toEndOf="@+id/sensorPIRLeft" />
+=======
+        android:layout_toStartOf="@+id/buttonON" />
+>>>>>>> 99a306985327dd5260be772e0e2f170e65ee8c35
 
     <View android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle"
         android:id="@+id/sensorTopRight"
+<<<<<<< HEAD
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/sensorPIRRight" />
+=======
+        android:layout_below="@+id/scrollView"
+        android:layout_toEndOf="@+id/buttonON" />
+>>>>>>> 99a306985327dd5260be772e0e2f170e65ee8c35
 
     <View android:layout_width="75dp"
         android:layout_height="75dp"
