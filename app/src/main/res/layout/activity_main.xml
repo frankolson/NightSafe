@@ -14,7 +14,7 @@
         android:text="Turn Unit On"
         android:id="@+id/buttonON"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/sensorBottomLeft" />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,7 +22,15 @@
         android:text="Turn Unit Off"
         android:id="@+id/buttonOFF"
         android:layout_below="@+id/buttonON"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/buttonON" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ALERT"
+        android:textSize="40dp"
+        android:background="@color/RED"
+        android:id="@+id/buttonAlert"
+        android:layout_alignStart="@+id/sensorBottomRight" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,14 +61,14 @@
         android:background="@drawable/circle"
         android:id="@+id/sensorTopLeft"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/buttonON" />
+        android:layout_toEndOf="@+id/sensorPIRLeft" />
 
     <View android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle"
         android:id="@+id/sensorTopRight"
-        android:layout_below="@+id/scrollView"
-        android:layout_toEndOf="@+id/buttonON" />
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/sensorPIRRight" />
 
     <View android:layout_width="75dp"
         android:layout_height="75dp"
