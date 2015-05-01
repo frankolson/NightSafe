@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
     // UI elements
     ScrollView scrollView;
     private TextView messages;
-    Button btnON, btnOFF;
+    Button btnON, btnOFF, btnALERT;
 
     View TRview;
     View TLview;
@@ -310,6 +310,7 @@ public class MainActivity extends Activity {
         messages = (TextView) findViewById(R.id.messages);
         btnON = (Button)findViewById(R.id.buttonON);
         btnOFF = (Button)findViewById(R.id.buttonOFF);
+        btnALERT = (Button)findViewById(R.id.buttonAlert);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         adapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -324,13 +325,17 @@ public class MainActivity extends Activity {
         btnOFF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // turn NightSafe device off
+                sendData(v, "0");
+            }
+        });
+
+        btnALERT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 // TEST THE EMERGENCY FUNCTION
                 Intent intent = new Intent(MainActivity.this, AggressionAlert.class);
                 startActivity(intent);
-
-                // turn NightSafe device off
-                sendData(v, "0");
-
             }
         });
     }
